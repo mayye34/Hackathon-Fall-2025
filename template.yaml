@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Trial API Lambdas
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 10
+    Architectures:
+      - x86_64
+
+Resources:
+  CheckTrial:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda/checkTrial/
+      Handler: app.lambda_handler
+      Policies:
+        - S3ReadPolicy:
+            BucketName: my-trials-bucket
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /checkTrial
+            Method: post
+
+  CheckInteractions:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda/checkInteractions/
+      Handler: app.lambda_handler
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /checkInteractions
+            Method: post
