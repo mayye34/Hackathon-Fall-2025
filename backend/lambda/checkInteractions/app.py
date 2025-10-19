@@ -1,5 +1,7 @@
 import json
 import boto3
+import csv
+from io import StringIO
 
 s3 = boto3.client('s3')
 BUCKET = 'drug-drug-interactions'
@@ -16,17 +18,36 @@ def lambda_handler(event, context):
     sups = [s.lower() for s in payload.get('supplements',[])]
 
     resp = s3.get_object(Bucket=BUCKET, Key=INTER_KEY)
-    inter_json = json.loads(resp['Body'].read().decode('utf-8'))
-
+    csv_text = resp['Body'].read().decode('utf-8')
+    f = StringIO(csv_text)
+    reader = csv.DictReader(f)
+    
     results = []
-    for med in meds:
-        if med in inter_json:
-            med_interactions = inter_json[med]
-            for it in med_interactions:
-                # quick substring match of supplement names in interaction text
-                for sup in sups:
-                    if sup in it.lower() or any(word in it.lower() for word in sup.split()):
-                        results.append({"med": med, "interaction": it})
+    for row in reader:
+        drug1 = row.get('Drug 1', '').lower()
+        drug2 = row.get('Drug 2', '').lower()
+        interaction = row.get('Interaction Description', '')
+        
+        # Check if any of our medications match drug1
+        if drug1 in meds:
+            # Check if any of our supplements match drug2
+            for sup in sups:
+                if sup.lower() in drug2:
+                    results.append({
+                        "med": drug1,
+                        "supplement": drug2,
+                        "interaction": interaction
+                    })
+        
+        # Also check the reverse (if supplement is in drug1 and medication in drug2)
+        if drug2 in meds:
+            for sup in sups:
+                if sup.lower() in drug1:
+                    results.append({
+                        "med": drug2,
+                        "supplement": drug1,
+                        "interaction": interaction
+                    })
 
     if not results:
         message = "No known interactions found in our dataset."
