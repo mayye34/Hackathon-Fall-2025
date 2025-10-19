@@ -6,7 +6,7 @@ app = Flask(__name__)
 events = boto3.client("events", region_name="us-east-1")
 lambda_client = boto3.client("lambda", region_name="us-east-1")
 
-LAMBDA_TARGET_ARN = "arn:aws:lambda:us-east-1:847521835083:function:MedicationReminder"  # <-- use the actual Lambda ARN
+LAMBDA_TARGET_ARN = "arn:aws:lambda:us-east-1:847521835083:function:medication"
 
 @app.route("/setReminder", methods=["POST"])
 def set_reminder():
