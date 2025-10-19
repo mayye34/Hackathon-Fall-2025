@@ -38,7 +38,7 @@ def lambda_handler(event, context):
         StatementId=f"{rule_name}-perm",
         Action="lambda:InvokeFunction",
         Principal="events.amazonaws.com",
-        SourceArn=f"arn:aws:events:us-east-1:123456789012:rule/{rule_name}"
+        SourceArn=f"arn:aws:events:us-east-1:847521835083:rule/{rule_name}"
     )
 
     return {
