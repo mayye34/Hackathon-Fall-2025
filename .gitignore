@@ -1,1 +1,5 @@
 backend/sagemaker/model-artifacts.zip
+.aws-sam
+backend/lambda/bedRockChatBot/__pycache__/
+backend/lambda/checkInteractions/__pycache__/
+backend/lambda/checkTrial/__pycache__/
