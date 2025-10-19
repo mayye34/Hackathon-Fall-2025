@@ -4,7 +4,7 @@ import boto3
 events = boto3.client("events")
 lambda_client = boto3.client("lambda")
 
-LAMBDA_TARGET_ARN = "arn:aws:sns:us-east-1:847521835083:MedRemind"
+LAMBDA_TARGET_ARN = "arn:aws:lambda:us-east-1:847521835083:function:medication"
 
 def lambda_handler(event, context):
     body = json.loads(event.get("body", "{}"))
