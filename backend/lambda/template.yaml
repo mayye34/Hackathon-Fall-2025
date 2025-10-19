@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Trial API Lambdas
+
+Globals:
+  Function:
+    Runtime: python3.11
+    Timeout: 10
+    Architectures:
+      - x86_64
+
+Resources:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+
+  CheckTrial:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: checkTrial/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Timeout: 10
+      Role: arn:aws:iam::847521835083:role/WSLambdaCurtailerRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: ApiGatewayApi
+            Path: /checkTrial
+            Method: post
+
+  CheckInteractions:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: checkInteractions/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Timeout: 10
+      Role: arn:aws:iam::847521835083:role/WSLambdaCurtailerRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: ApiGatewayApi
+            Path: /checkInteractions
+            Method: post
+
+Outputs:
+  CheckTrialApi:
+    Description: "API endpoint URL for the CheckTrial Lambda"
+    Value:
+      Fn::Sub: "https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/checkTrial"
+
+  CheckInteractionsApi:
+    Description: "API endpoint URL for the CheckInteractions Lambda"
+    Value:
+      Fn::Sub: "https://${ApiGatewayApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/checkInteractions"
