@@ -57,7 +57,6 @@ export default function MedicationTracker() {
       if (data.message) alert(`Remind created: ${data.message}`);
     } catch (err) {
       console.error("Failed to set reminder:", err);
-      alert("Error: failed to set reminder.");
     }
   };
 

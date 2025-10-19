@@ -1,40 +1,76 @@
-const API_BASE = 'http://localhost:5001'; // or your deployed URL
+// const API_BASE = '"http://localhost:5001"'; // or your deployed URL
+
+// export async function checkTrial(drug, demographic) {
+//   const resp = await fetch(`${API_BASE}/checkTrial`, {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({ drug, demographic }),
+//   });
+
+//   const data = await resp.json();
+
+//   // Handle Lambda proxy format
+//   if (data.body) {
+//     return JSON.parse(data.body);
+//   }
+
+//   return data;
+// }
+
+// export async function checkInteractions(drug1, drug2) {
+//   const resp = await fetch(`${API_BASE}/checkInteractions`, {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({ drug1, drug2 }),
+//   });
+
+//   const data = await resp.json();
+
+//   // Handle Lambda proxy format
+//   if (data.body) {
+//     return JSON.parse(data.body);
+//   }
+
+//   return data;
+// }
+
+// src/api.js
+// import { callLambda } from "../../backend/invokeLambda";
+
+
+// export async function checkTrial(drug, demographic) {
+//   const resp = await callLambda("CheckTrial", { drug, demographic });
+//   return JSON.parse(resp.body);
+// }
+
+// export async function checkInteractions(drug1, drug2) {
+//   const resp = await callLambda("CheckInteractions", { drug1, drug2 });
+//   return JSON.parse(resp.body);
+// }
+
+
+// src/api.js
+const API_BASE = "http://localhost:5001";
 
 export async function checkTrial(drug, demographic) {
   const resp = await fetch(`${API_BASE}/checkTrial`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ drug, demographic }),
   });
-
-  const data = await resp.json();
-
-  // Handle Lambda proxy format
-  if (data.body) {
-    return JSON.parse(data.body);
-  }
-
-  return data;
+  if (!resp.ok) throw new Error("Error fetching trial data");
+  return await resp.json();
 }
 
-export async function checkInteractions(drug1, drug2) {
+export async function checkInteractions(medications, supplements) {
   const resp = await fetch(`${API_BASE}/checkInteractions`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ drug1, drug2 }),
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ medications, supplements }),
   });
-
-  const data = await resp.json();
-
-  // Handle Lambda proxy format
-  if (data.body) {
-    return JSON.parse(data.body);
-  }
-
-  return data;
+  if (!resp.ok) throw new Error("Error fetching interactions");
+  return await resp.json();
 }
-
-
 
 
 

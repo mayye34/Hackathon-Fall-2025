@@ -1,4 +1,109 @@
-/* src/components/ResultCard.css */
+.result-card {
+  background: #f1f9fd;
+  border: 2px solid #cce3f1;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  color: #1e2a4a;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  max-width: 500px;
+  word-wrap: break-word;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.result-title {
+  background: #344b7d;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.section {
+  background: #eef6fa;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-bottom: 12px;
+}
+
+.section h4 {
+  margin-bottom: 6px;
+  color: #344b7d;
+  font-weight: 600;
+  border-bottom: 1px solid #cce3f1;
+  padding-bottom: 4px;
+}
+
+.section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.section li {
+  margin: 5px 0;
+}
+
+.representation {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Badge color variations */
+.badge.underrepresented {
+  background-color: #e57373;
+}
+.badge.minor {
+  background-color: #ffb74d;
+}
+.badge.moderate {
+  background-color: #f57c00;
+}
+.badge.major {
+  background-color: #d32f2f;
+}
+.badge.adequate {
+  background-color: #4caf50;
+}
+.badge.balanced {
+  background-color: #2196f3;
+}
+
+.interaction-message {
+  margin-top: 10px;
+  background: #eef6fa;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.json {
+  background: #eef6fa;
+  border-radius: 10px;
+  padding: 10px;
+  white-space: pre-wrap;
+  font-family: monospace;
+  color: #2e3a59;
+  font-size: 0.9rem;
+}
+
+
+/* src/components/ResultCard.css
 
 .result-card {
   background: #ccdeeb;
@@ -59,4 +164,4 @@
   border-radius: 6px;
   padding: 0.5rem;
   overflow-x: auto;
-}
+} */
