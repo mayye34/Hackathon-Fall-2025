@@ -10,6 +10,7 @@ def lambda_handler(event, context):
     body = json.loads(event.get("body", "{}"))
     time = body.get("time", "09:00")  # "HH:MM"
     email = body.get("email")
+    days = body.get("days", ["MON","TUE","WED","THU","FRI", "SAT", "SUN"])
     med_name = body.get("medName", "your medication")
 
     # Convert to UTC and build a cron expression
@@ -33,13 +34,16 @@ def lambda_handler(event, context):
     )
 
     # Allow EventBridge to invoke it
-    lambda_client.add_permission(
-        FunctionName=LAMBDA_TARGET_ARN,
-        StatementId=f"{rule_name}-perm",
-        Action="lambda:InvokeFunction",
-        Principal="events.amazonaws.com",
-        SourceArn=f"arn:aws:events:us-east-1:123456789012:rule/{rule_name}"
-    )
+    try:
+        lambda_client.add_permission(
+            FunctionName=LAMBDA_TARGET_ARN,
+            StatementId=f"{rule_name}-perm",
+            Action="lambda:InvokeFunction",
+            Principal="events.amazonaws.com",
+            SourceArn=f"arn:aws:events:us-east-1:847521835083:rule/{rule_name}"
+        )
+    except lambda_client.exceptions.ResourceConflictException:
+        print(f"Permission already exists for {rule_name}, skipping...")
 
     return {
         "statusCode": 200,
