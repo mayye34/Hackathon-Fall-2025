@@ -40,6 +40,12 @@ function App() {
         >
           Drug-Supplement Interactions
         </button>
+        <button
+          className={`tab-btn ${activeTab === 'tracker' ? 'active' : ''}`}
+          onClick={() => setActiveTab('tracker')}
+        >
+          Drug-Supplement Tracking
+        </button>
       </div>
 
       {/* tab content */}
@@ -57,6 +63,12 @@ function App() {
             <h2>Drug–Supplement Interactions</h2>
             <InteractionForm setResult={setInteractResult} />
             {interactResult && <ResultCard data={interactResult} />}
+          </section>
+        )}
+
+        {activeTab === 'tracker' && (
+          <section className="card">
+            <h2>Drug-Supplement Tracking</h2>
           </section>
         )}
       </main>
