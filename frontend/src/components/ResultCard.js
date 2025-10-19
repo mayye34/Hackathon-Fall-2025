@@ -5,7 +5,7 @@ import './ResultCard.css'; // optional if you want local styling
 export default function ResultCard({ data }) {
   if (!data) return null;
 
-  // Handle trial response
+  // Handle trial response`
   if (data.drug && data.demographic && data.details) {
     const { drug, demographic, representation, details } = data;
     return (

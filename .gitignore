@@ -3,4 +3,10 @@ backend/sagemaker/model-artifacts.zip
 backend/lambda/bedRockChatBot/__pycache__/
 backend/lambda/checkInteractions/__pycache__/
 backend/lambda/checkTrial/__pycache__/
+/node_modules
+backend/sagemaker/model-artifacts.zip
+.aws-sam
+backend/lambda/bedRockChatBot/__pycache__/
+backend/lambda/checkInteractions/__pycache__/
+backend/lambda/checkTrial/__pycache__/
 backend/node_modules
