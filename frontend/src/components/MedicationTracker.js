@@ -10,6 +10,8 @@ export default function MedicationTracker() {
 
   const [inputValue, setInputValue] = useState("");
   const [selectedDay, setSelectedDay] = useState(days[0]);
+  const [time, setTime] = useState("");      // ✅ added
+  const [email, setEmail] = useState("");    // ✅ added
 
   // ✅ Load from localStorage on mount
   useEffect(() => {
@@ -22,16 +24,41 @@ export default function MedicationTracker() {
     localStorage.setItem("medTracker", JSON.stringify(medications));
   }, [medications]);
 
-  const addMedication = () => {
-    if (!inputValue.trim()) return;
+  const addMedication = async () => {
+    if (!inputValue.trim() || !email || !time) return;
+
+    // 1️⃣ Update UI immediately
     setMedications(prev => ({
       ...prev,
       [selectedDay]: [
         ...prev[selectedDay],
-        { name: inputValue.trim(), taken: false, timestamp: null },
+        { name: inputValue.trim(), taken: false, time },
       ],
     }));
+
+    // Save current med name before clearing input
+    const medName = inputValue.trim();
     setInputValue("");
+
+    // 2️⃣ Call backend to schedule reminder
+    try {
+      const resp = await fetch("http://localhost:5002/setReminder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          medName,
+          time,
+          days: [selectedDay.substring(0, 3).toUpperCase()],
+        }),
+      });
+      const data = await resp.json();
+      console.log("Reminder response:", data);
+      if (data.message) alert(`Remind created: ${data.message}`);
+    } catch (err) {
+      console.error("Failed to set reminder:", err);
+      alert("Error: failed to set reminder.");
+    }
   };
 
   const toggleTaken = (day, index) => {
@@ -72,12 +99,27 @@ export default function MedicationTracker() {
             <option key={day}>{day}</option>
           ))}
         </select>
+
         <input
           type="text"
           placeholder="Medication name..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
+
+        <input
+          type="time"
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+        />
+
+        <input
+          type="email"
+          placeholder="Email..."
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
         <button onClick={addMedication}>Add</button>
       </div>
 
