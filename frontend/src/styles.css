@@ -1,0 +1,224 @@
+/* src/styles.css */
+
+body { 
+    font: "open sans";  
+    /*background:#cce3f1; */
+    background: #e6f1f7;
+    margin:2px; 
+    color:#223853; 
+    font-size: 16px; 
+}
+
+.app { 
+    max-width:1150px; 
+    margin:28px auto; 
+    padding:30px; 
+}
+
+header h1 { 
+    font: Roboto; 
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    font-weight: 700; /* Ensure it's bold */
+    margin-top: 30px; 
+    margin-bottom: 20px; 
+    font-size:75px; 
+    display: flex; 
+    align-items: baseline; 
+    flex-direction:row; 
+    justify-content: center; 
+    color: #04405e; 
+}
+
+.logo-icon {
+    font-size: 65px; 
+    color: #04405e; 
+    margin-left: 15px; 
+    transform: rotate(-10deg);
+    display: inline-block; 
+}
+
+.subtitle { 
+    font: "open sans";
+    margin-bottom: 60px; 
+    color:#04405e; 
+    display: flex; 
+    align-items: center; 
+    flex-direction: column; 
+    font-size: 30px;
+}
+
+.card { 
+    /* box-shadow: 4px 4px 10px rgba(34, 56, 83, 0.15); */
+    box-shadow: 0 10px 30px rgba(34, 56, 83, 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease; 
+    /*background:#f1f9fd; */
+    background: #BFDBEB;
+    border-radius:40px; 
+    padding: 10px 15px; 
+    margin-top: 25px; 
+    margin-bottom:20px; 
+    font-size: 20px; 
+    font: "open sans"; 
+    color: #04405e;
+}
+
+
+.card:hover {
+    /* transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(34, 56, 83, 0.2); */
+    transform: translateY(-5px); /* More noticeable lift */
+    box-shadow: 0 15px 35px rgba(34, 56, 83, 0.25);
+    border-style: solid; 
+    border-color: #87CEEB;
+    border-width: 3px; 
+}
+
+.form label { 
+    display:block; 
+    margin-bottom:10px; 
+    font-weight:600; 
+    font-size: 23px;
+    color: #04405e; 
+}
+
+.form input, .form select { 
+    width:90%; 
+    padding:8px 10px; 
+    border:1px solid #ddd; 
+    border-radius:8px; 
+    margin-top:6px; 
+    font-size: 18px;
+    background: #e6f1f7;
+    margin-bottom: 8px; 
+}
+
+.form input:focus, .form select:focus {
+    transform: translateY(-2px); /* More noticeable lift */
+    box-shadow: 0 15px 35px rgba(34, 56, 83, 0.15);
+}
+
+.row { 
+    display:flex; 
+    gap:12px; 
+}
+
+.row label { 
+    flex:1; 
+}
+
+.actions { 
+    margin-top:12px; 
+}
+
+button {
+    transition: background 0.25s ease, transform 0.1s ease; 
+    background: #06618F; 
+    color: #e6f1f7; 
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-bottom: 10px; 
+    padding: 8px 12px; 
+    border:none; 
+    border-radius:15px; 
+    cursor:pointer;
+    font-size: 20px;
+}
+
+button:hover {
+    background: #223853; 
+    transform: scale(1.02);
+}
+
+button[disabled] { 
+    opacity:0.4; 
+    cursor:default; 
+}
+
+/* for interaction medications/supplements */
+.chip-list { 
+    display:flex; 
+    gap:8px; 
+    flex-wrap:wrap; 
+    margin:8px 0 0; 
+    padding:0; 
+    list-style:none; 
+}
+
+.chip { 
+    background:#d3e9f5; 
+    padding:6px 8px; 
+    border-radius:16px; 
+    display:inline-flex; 
+    gap:8px; 
+    align-items:center; 
+}
+
+.chip button { 
+    background:transparent; 
+    border:0; 
+    cursor:pointer; 
+    font-weight:700; 
+}
+
+.error { 
+    color:#b91c1c; 
+    margin-top:8px; 
+}
+
+/* results of input */
+.result { 
+    background:#cce3f185; 
+    padding:12px; 
+    border-radius:15px; 
+    margin-top:15px; 
+}
+
+.json { 
+    white-space:pre-wrap;
+    font-family:inherit; 
+    font-size:13px; 
+}
+
+/* warning at bottom of page */
+footer { 
+    text-align:center; 
+    color:#223853; 
+    margin-top:18px; 
+}
+
+/* tabs */
+.tabs {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin: 20px auto; 
+}
+
+.tab-btn {
+    background: #d9eef9; 
+    color: #223853; 
+   /* border: 2px solid #344b7d; */
+    /* border-radius: 25px;  */
+    border-bottom: 2px solid #344b7d;
+    padding: 10px 18px; 
+    font-weight: 550; 
+    font-size: 22px;
+    cursor: pointer; 
+    transition: all 0.25s ease; 
+    margin-bottom: 20px; 
+    /* box-shadow: 0 10px 30px rgba(34, 56, 83, 0.08); */
+    box-shadow:  0 -5px 10px -5px rgba(34, 56, 83, 0.7);
+}
+
+.tab-btn:hover {
+    background: #87CEEB;
+}
+
+.tab-btn.active {
+    background: #04405e;
+    border-width: 3px; 
+    border-color: #87CEEB;
+    color: #e6f1f7;
+    transform: scale(1.03);
+    box-shadow:  0 -5px 10px -5px rgba(34, 56, 83, 0.7);
+}
