@@ -10,3 +10,6 @@ backend/lambda/bedRockChatBot/__pycache__/
 backend/lambda/checkInteractions/__pycache__/
 backend/lambda/checkTrial/__pycache__/
 backend/node_modules
+backend/lambda/reminder/medication.zip
+backend/lambda/reminder/reminderEvent.zip
+backend/lambda/reminder/output.json
