@@ -4,12 +4,11 @@ import boto3
 events = boto3.client("events")
 lambda_client = boto3.client("lambda")
 
-LAMBDA_TARGET_ARN = "arn:aws:lambda:us-east-1:123456789012:function:MedicationReminder"
+LAMBDA_TARGET_ARN = "arn:aws:sns:us-east-1:847521835083:MedRemind"
 
 def lambda_handler(event, context):
     body = json.loads(event.get("body", "{}"))
     time = body.get("time", "09:00")  # "HH:MM"
-    days = body.get("days", ["MON","TUE","WED","THU","FRI"])
     email = body.get("email")
     med_name = body.get("medName", "your medication")
 
@@ -45,7 +44,7 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": f"Reminder set for {time} on {days}",
+            "message": f"Reminder set for {time}",
             "cron": cron_expr
         })
     }
