@@ -4,7 +4,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 sns = boto3.client("sns")
-TOPIC_ARN = os.environ["SNS_TOPIC_ARN"]
+TOPIC_ARN = "arn:aws:sns:us-east-1:847521835083:MedRemind"
 
 def lambda_handler(event, context):
 
