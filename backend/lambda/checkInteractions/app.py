@@ -61,3 +61,10 @@ def lambda_handler(event, context):
             "results": results
         })
     }
+
+if __name__ == "__main__":
+    raw_input = sys.stdin.read()
+    if raw_input:
+        event = json.loads(raw_input)
+        result = lambda_handler(event, None)
+        print(json.dumps(result))

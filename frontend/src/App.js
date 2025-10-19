@@ -5,6 +5,7 @@ import TrialCheckForm from './components/TrialCheckForm';
 import InteractionForm from './components/InteractionForm';
 import ResultCard from './components/ResultCard';
 import BottleChatbot from './components/BottleChatbot';
+import './components/ResultCard.css'; 
 
 function App() {
   const [activeTab, setActiveTab] = useState('trial'); // 'trial' or 'interaction' 
