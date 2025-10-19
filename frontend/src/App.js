@@ -5,6 +5,9 @@ import TrialCheckForm from './components/TrialCheckForm';
 import InteractionForm from './components/InteractionForm';
 import ResultCard from './components/ResultCard';
 import BottleChatbot from './components/BottleChatbot';
+import './components/ResultCard.css'; 
+import MedicationTracker from './components/MedicationTracker';
+
 
 function App() {
   const [activeTab, setActiveTab] = useState('trial'); // 'trial' or 'interaction' 
@@ -39,6 +42,12 @@ function App() {
         >
           Drug-Supplement Interactions
         </button>
+        <button
+          className={`tab-btn ${activeTab === 'tracker' ? 'active' : ''}`}
+          onClick={() => setActiveTab('tracker')}
+        >
+          Drug-Supplement Tracking
+        </button>
       </div>
 
       {/* tab content */}
@@ -56,6 +65,13 @@ function App() {
             <h2>Drug–Supplement Interactions</h2>
             <InteractionForm setResult={setInteractResult} />
             {interactResult && <ResultCard data={interactResult} />}
+          </section>
+        )}
+
+        {activeTab === 'tracker' && (
+          <section className="card">
+            <h2>Drug-Supplement Tracking</h2>
+            <MedicationTracker />
           </section>
         )}
       </main>

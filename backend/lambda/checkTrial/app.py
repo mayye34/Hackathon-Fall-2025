@@ -1,11 +1,12 @@
 import json
 import boto3
 import csv
+import sys
 from io import StringIO
 
 # Clients
 s3 = boto3.client('s3')
-runtime = boto3.client('sagemaker-runtime')
+runtime = boto3.client('sagemaker-runtime', region_name='us-east-1')
 
 # Constants
 BUCKET = 'sagemaker-drug-trail-data'
@@ -259,4 +260,11 @@ def convert_drug_to_id(drug_name):
     else:
         return -1
 
+
+if __name__ == "__main__":
+    raw_input = sys.stdin.read()
+    if raw_input:
+        event = json.loads(raw_input)
+        result = lambda_handler(event, None)
+        print(json.dumps(result))
 

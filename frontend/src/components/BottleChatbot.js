@@ -17,7 +17,7 @@ function BottleChatbot() {
     setInput('');
 
     // Send to backend (you’ll create this endpoint later)
-    const response = await fetch('https://your-api-endpoint/chat', {
+    const response = await fetch('http://128.180.210.82:5001/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: input }),
