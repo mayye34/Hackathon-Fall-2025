@@ -6,6 +6,8 @@ import InteractionForm from './components/InteractionForm';
 import ResultCard from './components/ResultCard';
 import BottleChatbot from './components/BottleChatbot';
 import './components/ResultCard.css'; 
+import MedicationTracker from './components/MedicationTracker';
+
 
 function App() {
   const [activeTab, setActiveTab] = useState('trial'); // 'trial' or 'interaction' 
@@ -69,6 +71,7 @@ function App() {
         {activeTab === 'tracker' && (
           <section className="card">
             <h2>Drug-Supplement Tracking</h2>
+            <MedicationTracker />
           </section>
         )}
       </main>
