@@ -69,7 +69,8 @@
   position: fixed;
   bottom: 100px;
   right: 25px;
-  width: 375px;
+  width: 425px;
+  max-height: 70vh; 
   background: #f1f9fd;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -91,8 +92,10 @@
   flex-grow: 1;
   padding: 10px;
   overflow-y: auto;
+  max-height: calc(70vh - 120px);
   font-size: 20px;
   line-height: 1.4; 
+  scroll-behavior: smooth; 
 }
 
 .chat-message {
@@ -110,7 +113,7 @@
 }
 
 .chat-message.bot {
-  background: #eef6fa;
+  background: #fafdff;
   align-self: flex-start;
 }
 
@@ -135,4 +138,22 @@
   padding: 8px 12px;
   cursor: pointer;
   font-size: 18px; 
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #e5eef5;
+  border-radius: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #97b4d4;
+  border-radius: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #6f90b8;
 }
